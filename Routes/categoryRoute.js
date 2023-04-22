@@ -1,0 +1,10 @@
+const express=require('express');
+const router=express.Router();
+const {requireSignIn,isAdmin}=require('../Middlewares/authMiddleware.js');
+const {createCategoryController,updatecategoryController,categorysController,singlecategoryController,deletecategoryController}=require('../Controllers/CategoryController');
+router.post('/create-category',requireSignIn,isAdmin,createCategoryController);
+router.put('/update-category/:id',requireSignIn,isAdmin,updatecategoryController);
+router.get('/categorys',categorysController);
+router.get('/single-category/:slug',singlecategoryController);
+router.delete('/delete-category/:id',requireSignIn,isAdmin,deletecategoryController);
+module.exports=router;
